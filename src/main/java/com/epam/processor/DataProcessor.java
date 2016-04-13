@@ -197,14 +197,12 @@ public class DataProcessor {
      * @return
      */
     public Map<String, Long> getCountByRoadSurfaceCondition(){ 
-    	Map<String, Long> map = new HashMap<>();
-    	
-    	long dry = roadAccidentList.stream().filter(ra -> ra.getRoadSurfaceConditions().equals("5") || ra.getRoadSurfaceConditions().equalsIgnoreCase("dry")).count();
-    	long wet = roadAccidentList.stream().filter(ra -> ra.getRoadSurfaceConditions().equals("2") || ra.getRoadSurfaceConditions().equalsIgnoreCase("wet")).count();
-    	
-    	map.put("Dry", dry);
-        map.put("Wet", wet);
-    	return map;  	
+    	return roadAccidentList.stream()
+    			.map(RoadAccident::getRoadSurfaceConditions)
+    			.collect(Collectors.groupingBy(
+							item -> item,
+							Collectors.counting()
+    			));
     }
 
     /**
