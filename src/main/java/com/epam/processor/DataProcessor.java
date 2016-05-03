@@ -1,7 +1,6 @@
 package com.epam.processor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -22,7 +21,8 @@ public class DataProcessor {
 
     public DataProcessor(List<RoadAccident> roadAccidentList){
         this.roadAccidentList = roadAccidentList;
-    }    
+    }
+  
     
 //    First try to solve task using java 7 style for processing collections
 
@@ -197,12 +197,14 @@ public class DataProcessor {
      * @return
      */
     public Map<String, Long> getCountByRoadSurfaceCondition(){ 
-    	return roadAccidentList.stream()
-    			.map(RoadAccident::getRoadSurfaceConditions)
-    			.collect(Collectors.groupingBy(
-							item -> item,
-							Collectors.counting()
-    			));
+    	Map<String, Long> map = new HashMap<>();
+    	
+    	long dry = roadAccidentList.stream().filter(ra -> ra.getRoadSurfaceConditions().equals("5") || ra.getRoadSurfaceConditions().equalsIgnoreCase("dry")).count();
+    	long wet = roadAccidentList.stream().filter(ra -> ra.getRoadSurfaceConditions().equals("2") || ra.getRoadSurfaceConditions().equalsIgnoreCase("wet")).count();
+    	
+    	map.put("Dry", dry);
+        map.put("Wet", wet);
+    	return map;  	
     }
 
     /**
