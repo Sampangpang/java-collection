@@ -1,3 +1,9 @@
 *.iml
 target/*
 /bin/
+<<<<<<< HEAD
+=======
+/.classpath
+/.project
+/.gitignore
+>>>>>>> refs/heads/master
