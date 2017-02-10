@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         AccidentsDataLoader accidentsDataLoader = new AccidentsDataLoader();
-        List<RoadAccident> accidentsMaster = accidentsDataLoader.loadRoadAccidents(ACCIDENTS_CSV);
+        List<RoadAccident> accidentsMaster1 = accidentsDataLoader.loadRoadAccidents(ACCIDENTS_CSV);
 
 
     }
